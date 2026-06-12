@@ -449,7 +449,8 @@ fun MessageInputText(
                           modelManagerUiState.selectedModel.runtimeType == RuntimeType.AICORE &&
                             (imageCount + pickedImages.size) >= MAX_IMAGE_COUNT_AI_CORE
                         val enableAddImageMenuItems =
-                          (imageCount + pickedImages.size) < MAX_IMAGE_COUNT
+                          (imageCount + pickedImages.size) < MAX_IMAGE_COUNT &&
+                            modelManagerUiState.selectedModel.llmSupportVision
                         // Take a picture.
                         DropdownMenuItem(
                           text = {
@@ -519,7 +520,8 @@ fun MessageInputText(
                       // Audio related menu items.
                       if (showAudioPicker) {
                         val enableRecordAudioClipMenuItems =
-                          (audioClipMessageCount + pickedAudioClips.size) < MAX_AUDIO_CLIP_COUNT
+                          (audioClipMessageCount + pickedAudioClips.size) < MAX_AUDIO_CLIP_COUNT &&
+                            modelManagerUiState.selectedModel.llmSupportAudio
                         DropdownMenuItem(
                           text = {
                             Row(
